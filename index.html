@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Search Engine Optimization (SEO) Metadata -->
-    <meta name="description" content="Welcome to Khans Cravings—where culinary tradition meets innovation. Experience an elite dining journey featuring our critically acclaimed signature dishes and celebrated house specialties. Book your premium culinary experience today.">
-    <meta name="keywords" content="Khans Cravings, premium dining, signature dishes, fine dining restaurant, house specialties">
-    <meta property="og:title" content="Khans Cravings | Premium Culinary Experience">
-    <meta property="og:description" content="Indulge in a legacy of gastronomic excellence. Showcasing our famous house specialties and masterfully crafted signature creations.">
-    <meta property="og:type" content="website">
-
+    <meta name="description" content="Welcome to Khans Cravings—where culinary tradition meets innovation. Experience an elite dining journey featuring our critically acclaimed signature dishes. Book your premium culinary experience today.">
     <title>Khans Cravings | Premium Dining</title>
     <style>
         body { font-family: 'Georgia', serif; margin: 0; padding: 0; background-color: #fcfbf7; color: #222; }
@@ -29,6 +24,14 @@
         .menu-item-description { font-size: 0.95rem; color: #666; margin-top: 4px; font-style: italic; line-height: 1.4; }
         .menu-item-price { font-size: 1.2rem; font-weight: bold; color: #1a1a1a; white-space: nowrap; }
         
+        /* NEW: Premium Payment Card Section Styles */
+        .payment-box { background-color: #1a1a1a; color: white; padding: 40px 20px; border-radius: 8px; text-align: center; margin-top: 60px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); border: 1px solid #dfb76c; }
+        .payment-box h3 { color: #dfb76c; margin-top: 0; font-size: 1.6rem; font-weight: 400; letter-spacing: 1px; }
+        .payment-box p { color: #ccc; font-size: 1rem; margin-bottom: 25px; }
+        .checkout-btn { display: inline-block; background-color: #dfb76c; color: #1a1a1a; font-size: 1.1rem; font-weight: bold; text-decoration: none; padding: 15px 35px; border-radius: 4px; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
+        .checkout-btn:hover { background-color: #f0cc85; }
+        .badge-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; color: #888; font-size: 0.85rem; }
+        
         footer { background-color: #1a1a1a; color: #888; text-align: center; padding: 30px 20px; margin-top: 60px; font-size: 0.9rem; }
     </style>
 </head>
@@ -44,9 +47,8 @@
             Experience an elite dining journey featuring our critically acclaimed house specialties, crafted masterfully by our culinary artisans to satisfy your deepest cravings.
         </p>
 
-        <!-- SECTION 1: APPETIZERS -->
+        <!-- APPETIZERS -->
         <div class="menu-section-title">Appetizers</div>
-        
         <div class="menu-item">
             <div class="menu-item-details">
                 <div class="menu-item-name">Truffle Infused Bites</div>
@@ -55,50 +57,29 @@
             <div class="menu-item-price">$14.00</div>
         </div>
 
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Signature Spiced Skewers</div>
-                <div class="menu-item-description">Tender grilled options marinated in our secret Khan family house spice blend, served with mint reduction.</div>
-            </div>
-            <div class="menu-item-price">$16.00</div>
-        </div>
-
-        <!-- SECTION 2: SIGNATURE MAINS -->
+        <!-- SIGNATURE MAINS -->
         <div class="menu-section-title">Signature Masterpieces</div>
-        
         <div class="menu-item">
             <div class="menu-item-details">
                 <div class="menu-item-name">The Emperor's Platter</div>
-                <div class="menu-item-description">Our supreme culinary dish. Slow-cooked premium cut meat, heavily infused with exotic spices, fresh herbs, and served alongside saffron-scented long grain rice.</div>
+                <div class="menu-item-description">Our supreme culinary dish. Slow-cooked premium cut meat, heavily infused with exotic spices.</div>
             </div>
             <div class="menu-item-price">$38.00</div>
         </div>
 
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Cravings Royal Curry</div>
-                <div class="menu-item-description">A rich, velvety signature sauce crafted with roasted cashews, coconut cream, and slow-simmered custom protein selections.</div>
+        <!-- NEW: SECURE CHECKOUT SECTION -->
+        <div class="payment-box">
+            <h3>Secure Order &amp; Digital Reservation</h3>
+            <p>Place an order or secure your table selection online. We accept all major international credit cards, debit cards, and secure mobile wallets.</p>
+            
+            <!-- Replace the '#' inside href with your actual Stripe or PayPal link -->
+            <a href="#" target="_blank" class="checkout-btn">Proceed to Secure Checkout</a>
+            
+            <div class="badge-container">
+                <span>💳 Visa / Mastercard / Amex</span>
+                <span>•</span>
+                <span>🔒 256-Bit SSL Encrypted</span>
             </div>
-            <div class="menu-item-price">$29.00</div>
-        </div>
-
-        <!-- SECTION 3: DESSERTS & DRINKS -->
-        <div class="menu-section-title">Desserts & Refreshments</div>
-        
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Saffron Cardamom Mousse</div>
-                <div class="menu-item-description">Light and airy traditional cream fusion topped with crushed gold flakes and organic pistachios.</div>
-            </div>
-            <div class="menu-item-price">$12.00</div>
-        </div>
-
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Artisan Botanical Elixir</div>
-                <div class="menu-item-description">A cooling signature mocktail drink blended with fresh rose water, compressed lime juice, and wild mint leaves.</div>
-            </div>
-            <div class="menu-item-price">$8.50</div>
         </div>
 
     </div>
