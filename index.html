@@ -1,50 +1,33 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Search Engine Optimization (SEO) Metadata -->
-    <meta name="description" content="Welcome to Khans Cravings—where culinary tradition meets innovation. Experience an elite dining journey featuring our critically acclaimed signature dishes. Book your premium culinary experience today.">
     <title>Khans Cravings | Premium Dining</title>
     <style>
         body { font-family: 'Georgia', serif; margin: 0; padding: 0; background-color: #fcfbf7; color: #222; }
-        
-        /* HEADER LAYOUT: Flexbox structure to keep title and cart aligned */
         header { background-color: #1a1a1a; color: #dfb76c; padding: 30px 20px; border-bottom: 3px solid #dfb76c; position: relative; }
         .header-main { display: flex; justify-content: center; align-items: center; max-width: 800px; margin: 0 auto; position: relative; }
-        
         h1 { margin: 0; font-size: 2.4rem; letter-spacing: 3px; font-weight: 400; text-align: center; }
         .tagline { font-style: italic; color: #fff; margin-top: 8px; font-size: 1rem; letter-spacing: 1px; text-align: center; }
-        
-        /* NEW: Header Cart Button styling beside the title */
         .header-cart-btn { background-color: #dfb76c; color: #1a1a1a; font-family: sans-serif; font-size: 0.85rem; font-weight: bold; text-decoration: none; padding: 8px 14px; border-radius: 20px; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-left: 20px; }
         .header-cart-btn:hover { background-color: #f0cc85; }
         .cart-count { background-color: #1a1a1a; color: #dfb76c; padding: 2px 6px; border-radius: 50px; font-size: 0.75rem; }
-
         .container { max-width: 800px; margin: 20px auto; padding: 0 20px; }
         .intro-text { text-align: center; font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: 25px; }
-        
-        .menu-section-title { text-align: center; font-size: 1.6rem; color: #1a1a1a; border-bottom: 1px solid #dfb76c; padding-bottom: 6px; margin-top: 20px; margin-bottom: 15px; font-weight: 400; letter-spacing: 1px; }
-        
-        /* Clean menu layout with prices pushed to the right side */
+        .menu-section-title { text-align: center; font-size: 1.6rem; color: #1a1a1a; border-bottom: 1px solid #dfb76c; padding-bottom: 6px; margin-top: 35px; margin-bottom: 20px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; }
         .menu-item { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed #eee; }
         .menu-item-details { flex-grow: 1; padding-right: 20px; }
         .menu-item-name { font-size: 1.1rem; font-weight: bold; color: #b8860b; }
         .menu-item-description { font-size: 0.9rem; color: #666; margin-top: 4px; font-style: italic; line-height: 1.4; }
         .menu-item-price { font-size: 1.1rem; font-weight: bold; color: #1a1a1a; white-space: nowrap; }
-        
-        .payment-box { background-color: #1a1a1a; color: white; padding: 25px 20px; border-radius: 8px; text-align: center; margin-top: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); border: 1px solid #dfb76c; }
+        .payment-box { background-color: #1a1a1a; color: white; padding: 25px 20px; border-radius: 8px; text-align: center; margin-top: 40px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); border: 1px solid #dfb76c; }
         .payment-box h3 { color: #dfb76c; margin-top: 0; margin-bottom: 10px; font-size: 1.4rem; font-weight: 400; letter-spacing: 1px; }
         .payment-box p { color: #ccc; font-size: 0.95rem; margin-bottom: 15px; margin-top: 0; }
-        
         .checkout-btn { display: inline-block; background-color: #dfb76c; color: #1a1a1a; font-size: 1rem; font-weight: bold; text-decoration: none; padding: 12px 30px; border-radius: 4px; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; border: none; cursor: pointer; }
         .checkout-btn:hover { background-color: #f0cc85; }
-        
         .badge-container { display: flex; justify-content: center; gap: 15px; margin-top: 15px; color: #888; font-size: 0.8rem; }
         footer { background-color: #1a1a1a; color: #888; text-align: center; padding: 20px; margin-top: 40px; font-size: 0.85rem; }
-
-        /* Mobile specific adjustments to stack nicely on narrow screens */
         @media (max-width: 480px) {
             .header-main { flex-direction: column; gap: 12px; }
             .header-cart-btn { margin-left: 0; }
@@ -52,24 +35,16 @@ DOCTYPE html>
     </style>
 </head>
 <body>
-
     <header>
         <div class="header-main">
             <h1>KHANS CRAVINGS</h1>
-            <!-- Cart Action Element directly beside the name -->
-            <button class="header-cart-btn">
-                🛒 Cart <span class="cart-count">0</span>
-            </button>
+            <button class="header-cart-btn">🛒 Cart <span class="cart-count">0</span></button>
         </div>
         <div class="tagline">Where Culinary Tradition Meets Innovation</div>
     </header>
-
     <div class="container">
-        <p class="intro-text">
-            Experience an elite dining journey featuring our critically acclaimed house specialties, crafted masterfully by our culinary artisans to satisfy your deepest cravings.
-        </p>
-
-        <!-- APPETIZERS -->
+        <p class="intro-text">Experience an elite dining journey featuring our critically acclaimed house specialties, crafted masterfully by our culinary artisans to satisfy your deepest cravings.</p>
+        
         <div class="menu-section-title">Appetizers</div>
         <div class="menu-item">
             <div class="menu-item-details">
@@ -79,7 +54,6 @@ DOCTYPE html>
             <div class="menu-item-price">$14.00</div>
         </div>
 
-        <!-- SIGNATURE MAINS -->
         <div class="menu-section-title">Signature Masterpieces</div>
         <div class="menu-item">
             <div class="menu-item-details">
@@ -88,26 +62,80 @@ DOCTYPE html>
             </div>
             <div class="menu-item-price">$38.00</div>
         </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <div class="menu-item-name">Royal Saffron Seabass</div>
+                <div class="menu-item-description">Pan-seared Chilean seabass dressed in a rich, velvety Kashmiri saffron reduction broth.</div>
+            </div>
+            <div class="menu-item-price">$42.00</div>
+        </div>
 
-        <!-- SECURE CHECKOUT SECTION -->
+        <div class="menu-section-title">Regional Dishes</div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <div class="menu-item-name">Old Dhaka Biryani</div>
+                <div class="menu-item-description">Authentic heritage recipe featuring aromatic kalijira rice and tender, slow-simmered spiced mutton.</div>
+            </div>
+            <div class="menu-item-price">$24.00</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <div class="menu-item-name">Nizami Dum Murg</div>
+                <div class="menu-item-description">Slow-cooked chicken in an opulent almond and cashew gravy, sealed with dough to lock in smoke flavors.</div>
+            </div>
+            <div class="menu-item-price">$22.00</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <div class="menu-item-name">Coastal Prawn Malai Curry</div>
+                <div class="menu-item-description">Jumbo tiger prawns simmered gently in a fragrant, creamy coconut milk gravy base infused with green chilis.</div>
+            </div>
+            <div class="menu-item-price">$26.00</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <div class="menu-item-name">Shahi Paneer Pasanda</div>
+                <div class="menu-item-description">Stuffed cottage cheese triangles folded inside a regal, creamy tomato sauce sweet ginger paste layer.</div>
+            </div>
+            <div class="menu-item-price">$19.00</div>
+        </div>
+
+        <div class="menu-section-title">Desserts</div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <div class="menu-item-name">Gilded Pistachio Kulfi</div>
+                <div class="menu-item-description">Traditional dense frozen ice cream infused heavily with roasted pistachios, cardamoms, and edible gold leaf.</div>
+            </div>
+            <div class="menu-item-price">$9.50</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <div class="menu-item-name">Saffron Infused Rasmalai</div>
+                <div class="menu-item-description">Soft, spongy cottage cheese discs soaked in sweetened, thickened milk delicately scented with saffron threads.</div>
+            </div>
+            <div class="menu-item-price">$8.00</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-details">
+                <div class="menu-item-name">Rosewater Baked Cheesecake</div>
+                <div class="menu-item-description">Fusion dessert marrying a rich New York style baked texture with fresh Persian rosewater syrup glazes.</div>
+            </div>
+            <div class="menu-item-price">$11.00</div>
+        </div>
+
         <div class="payment-box">
             <h3>Secure Order &amp; Digital Reservation</h3>
             <p>Place an order or secure your table selection online. We accept all major cards and secure mobile wallets.</p>
-            
             <a href="#" target="_blank" class="checkout-btn">Proceed to Secure Checkout</a>
-            
             <div class="badge-container">
                 <span>💳 Visa / Mastercard / Amex</span>
                 <span>•</span>
                 <span>🔒 256-Bit SSL Encrypted</span>
             </div>
         </div>
-
     </div>
-
     <footer>
         <p>&copy; 2026 Khans Cravings. All Rights Reserved.</p>
     </footer>
-
 </body>
 </html>
