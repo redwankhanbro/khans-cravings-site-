@@ -9,36 +9,58 @@
     <title>Khans Cravings | Premium Dining</title>
     <style>
         body { font-family: 'Georgia', serif; margin: 0; padding: 0; background-color: #fcfbf7; color: #222; }
-        header { background-color: #1a1a1a; color: #dfb76c; padding: 50px 20px; text-align: center; border-bottom: 3px solid #dfb76c; }
-        h1 { margin: 0; font-size: 2.8rem; letter-spacing: 3px; font-weight: 400; }
-        .tagline { font-style: italic; color: #fff; margin-top: 8px; font-size: 1.1rem; letter-spacing: 1px; }
         
-        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        .intro-text { text-align: center; font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 50px; }
+        /* HEADER LAYOUT: Flexbox structure to keep title and cart aligned */
+        header { background-color: #1a1a1a; color: #dfb76c; padding: 30px 20px; border-bottom: 3px solid #dfb76c; position: relative; }
+        .header-main { display: flex; justify-content: center; align-items: center; max-width: 800px; margin: 0 auto; position: relative; }
         
-        .menu-section-title { text-align: center; font-size: 1.8rem; color: #1a1a1a; border-bottom: 1px solid #dfb76c; padding-bottom: 8px; margin-top: 40px; margin-bottom: 25px; font-weight: 400; letter-spacing: 1px; }
+        h1 { margin: 0; font-size: 2.4rem; letter-spacing: 3px; font-weight: 400; text-align: center; }
+        .tagline { font-style: italic; color: #fff; margin-top: 8px; font-size: 1rem; letter-spacing: 1px; text-align: center; }
         
-        .menu-item { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
+        /* NEW: Header Cart Button styling beside the title */
+        .header-cart-btn { background-color: #dfb76c; color: #1a1a1a; font-family: sans-serif; font-size: 0.85rem; font-weight: bold; text-decoration: none; padding: 8px 14px; border-radius: 20px; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-left: 20px; }
+        .header-cart-btn:hover { background-color: #f0cc85; }
+        .cart-count { background-color: #1a1a1a; color: #dfb76c; padding: 2px 6px; border-radius: 50px; font-size: 0.75rem; }
+
+        .container { max-width: 800px; margin: 20px auto; padding: 0 20px; }
+        .intro-text { text-align: center; font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: 25px; }
+        
+        .menu-section-title { text-align: center; font-size: 1.6rem; color: #1a1a1a; border-bottom: 1px solid #dfb76c; padding-bottom: 6px; margin-top: 20px; margin-bottom: 15px; font-weight: 400; letter-spacing: 1px; }
+        
+        /* Clean menu layout with prices pushed to the right side */
+        .menu-item { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed #eee; }
         .menu-item-details { flex-grow: 1; padding-right: 20px; }
-        .menu-item-name { font-size: 1.2rem; font-weight: bold; color: #b8860b; }
-        .menu-item-description { font-size: 0.95rem; color: #666; margin-top: 4px; font-style: italic; line-height: 1.4; }
-        .menu-item-price { font-size: 1.2rem; font-weight: bold; color: #1a1a1a; white-space: nowrap; }
+        .menu-item-name { font-size: 1.1rem; font-weight: bold; color: #b8860b; }
+        .menu-item-description { font-size: 0.9rem; color: #666; margin-top: 4px; font-style: italic; line-height: 1.4; }
+        .menu-item-price { font-size: 1.1rem; font-weight: bold; color: #1a1a1a; white-space: nowrap; }
         
-        /* NEW: Premium Payment Card Section Styles */
-        .payment-box { background-color: #1a1a1a; color: white; padding: 40px 20px; border-radius: 8px; text-align: center; margin-top: 60px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); border: 1px solid #dfb76c; }
-        .payment-box h3 { color: #dfb76c; margin-top: 0; font-size: 1.6rem; font-weight: 400; letter-spacing: 1px; }
-        .payment-box p { color: #ccc; font-size: 1rem; margin-bottom: 25px; }
-        .checkout-btn { display: inline-block; background-color: #dfb76c; color: #1a1a1a; font-size: 1.1rem; font-weight: bold; text-decoration: none; padding: 15px 35px; border-radius: 4px; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
+        .payment-box { background-color: #1a1a1a; color: white; padding: 25px 20px; border-radius: 8px; text-align: center; margin-top: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); border: 1px solid #dfb76c; }
+        .payment-box h3 { color: #dfb76c; margin-top: 0; margin-bottom: 10px; font-size: 1.4rem; font-weight: 400; letter-spacing: 1px; }
+        .payment-box p { color: #ccc; font-size: 0.95rem; margin-bottom: 15px; margin-top: 0; }
+        
+        .checkout-btn { display: inline-block; background-color: #dfb76c; color: #1a1a1a; font-size: 1rem; font-weight: bold; text-decoration: none; padding: 12px 30px; border-radius: 4px; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; border: none; cursor: pointer; }
         .checkout-btn:hover { background-color: #f0cc85; }
-        .badge-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; color: #888; font-size: 0.85rem; }
         
-        footer { background-color: #1a1a1a; color: #888; text-align: center; padding: 30px 20px; margin-top: 60px; font-size: 0.9rem; }
+        .badge-container { display: flex; justify-content: center; gap: 15px; margin-top: 15px; color: #888; font-size: 0.8rem; }
+        footer { background-color: #1a1a1a; color: #888; text-align: center; padding: 20px; margin-top: 40px; font-size: 0.85rem; }
+
+        /* Mobile specific adjustments to stack nicely on narrow screens */
+        @media (max-width: 480px) {
+            .header-main { flex-direction: column; gap: 12px; }
+            .header-cart-btn { margin-left: 0; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>KHANS CRAVINGS</h1>
+        <div class="header-main">
+            <h1>KHANS CRAVINGS</h1>
+            <!-- Cart Action Element directly beside the name -->
+            <button class="header-cart-btn">
+                🛒 Cart <span class="cart-count">0</span>
+            </button>
+        </div>
         <div class="tagline">Where Culinary Tradition Meets Innovation</div>
     </header>
 
@@ -67,12 +89,11 @@
             <div class="menu-item-price">$38.00</div>
         </div>
 
-        <!-- NEW: SECURE CHECKOUT SECTION -->
+        <!-- SECURE CHECKOUT SECTION -->
         <div class="payment-box">
             <h3>Secure Order &amp; Digital Reservation</h3>
-            <p>Place an order or secure your table selection online. We accept all major international credit cards, debit cards, and secure mobile wallets.</p>
+            <p>Place an order or secure your table selection online. We accept all major cards and secure mobile wallets.</p>
             
-            <!-- Replace the '#' inside href with your actual Stripe or PayPal link -->
             <a href="#" target="_blank" class="checkout-btn">Proceed to Secure Checkout</a>
             
             <div class="badge-container">
@@ -85,7 +106,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Khans Cravings. All Rights Reserved. | Designed for Fine Dining Exclusivity</p>
+        <p>&copy; 2026 Khans Cravings. All Rights Reserved.</p>
     </footer>
 
 </body>
