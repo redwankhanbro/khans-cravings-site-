@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khans Cravings - Menu</title>
     <style>
-        /* Original Website Styles */
-        header { background-color: #1a1a1a; color: #fff; padding: 10px 20px; }
+        /* Base Page Styles */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; color: #333; margin: 0; padding: 0; }
+        header { background-color: #1a1a1a; color: #fff; padding: 15px 20px; }
         .header-main { display: flex; justify-content: space-between; align-items: center; }
-        h1 { margin: 0; font-size: 2.4rem; letter-spacing: 1px; color: #fff; }
-        .tagline { font-style: italic; color: #fff; margin-top: 5px; }
-        .header-cart-btn { background-color: #dfb76c; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        h1 { margin: 0; font-size: 2.2rem; letter-spacing: 1px; color: #fff; }
+        .tagline { font-style: italic; color: #fff; margin-top: 5px; font-size: 0.95rem; }
+        .header-cart-btn { background-color: #dfb76c; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; color: #1a1a1a; }
         .header-cart-btn:hover { background-color: #cfab60; }
         .cart-count { background-color: #1a1a1a; color: #fff; padding: 2px 6px; border-radius: 50%; margin-left: 5px; }
-        .container { max-width: 1000px; margin: 20px auto; padding: 0 15px; }
+        .container { max-width: 1000px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
         .intro-text { text-align: center; font-size: 1.1rem; color: #555; line-height: 1.6; margin-bottom: 40px; }
         .menu-section-title { text-align: center; color: #1a1a1a; border-bottom: 2px solid #dfb76c; padding-bottom: 5px; margin-top: 40px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* Responsive Grid Layout */
+        /* Mobile Responsive Grid System */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -36,57 +37,34 @@
             border: 1px solid #eee;
         }
 
-        /* Menu Item Content Details */
-        .food-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-        .food-name { font-size: 1.25rem; font-weight: bold; color: #dfb76c; margin: 0; }
-        .food-price { font-size: 1.2rem; color: #1a1a1a; font-weight: bold; }
+        /* Food Card Content Formatting */
+        .food-name { font-size: 1.3rem; font-weight: bold; color: #dfb76c; margin: 0 0 10px 0; }
         .food-description { font-size: 0.95rem; color: #666; line-height: 1.5; margin: 0 0 15px 0; flex-grow: 1; }
         
-        /* Add-to-Cart Action Elements */
-        .payment-box { background-color: #1a1a1a; padding: 15px; border-radius: 6px; text-align: center; margin-top: auto; }
-        .checkout-btn { display: inline-block; background-color: #dfb76c; color: #1a1a1a; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; text-decoration: none; }
+        /* Custom Request: Price displayed prominently below description */
+        .food-price { font-size: 1.25rem; color: #1a1a1a; font-weight: bold; margin-bottom: 15px; display: block; }
+        
+        /* Payment/Checkout Action Box */
+        .payment-box { background-color: #1a1a1a; padding: 12px; border-radius: 6px; text-align: center; margin-top: auto; }
+        .checkout-btn { display: inline-block; background-color: #dfb76c; color: #1a1a1a; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; text-decoration: none; box-sizing: border-box; }
         .checkout-btn:hover { background-color: #f0c370; }
         
-        /* NEW: Footer Payment Methods Section Styling */
-        .payment-methods-section {
-            text-align: center;
-            margin: 50px auto 20px auto;
-            padding: 20px;
-            border-top: 1px dashed #dfb76c;
-            max-width: 600px;
-        }
-        .payment-methods-section h4 {
-            color: #1a1a1a;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-        .badges-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .payment-badge {
-            border: 1px solid #dfb76c;
-            color: #1a1a1a;
-            background-color: #fff;
-            padding: 6px 12px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            border-radius: 4px;
-            letter-spacing: 1px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
+        /* Footer Accepted Payment Badges */
+        .payment-methods-section { text-align: center; margin: 50px auto 20px auto; padding-top: 25px; border-top: 1px dashed #dfb76c; max-width: 600px; }
+        .payment-methods-section h4 { color: #1a1a1a; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; margin-top: 0; }
+        .badges-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .payment-badge { border: 1px solid #dfb76c; color: #1a1a1a; background-color: #fff; padding: 6px 14px; font-size: 0.85rem; font-weight: bold; border-radius: 4px; letter-spacing: 1px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
         
-        footer { background-color: #1a1a1a; color: #fff; text-align: center; padding: 15px; margin-top: 30px; }
+        footer { background-color: #1a1a1a; color: #fff; text-align: center; padding: 20px; margin-top: 40px; font-size: 0.9rem; }
         
+        /* Smooth Mobile Adaptability Override */
         @media (max-width: 480px) {
-            .header-main { flex-direction: column; gap: 10px; text-align: center; }
+            header { padding: 15px; }
+            h1 { font-size: 1.8rem; }
+            .header-main { flex-direction: column; gap: 12px; text-align: center; }
             .header-cart-btn { margin-left: 0; width: 100%; }
-            .badges-container { gap: 10px; }
+            .badges-container { gap: 8px; justify-content: center; }
+            .payment-badge { padding: 6px 10px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -106,16 +84,14 @@
     <div class="container">
         <p class="intro-text">Experience an elite dining journey featuring our critically acclaimed house specialties, crafted masterfully by our culinary artisans to satisfy your deepest cravings.</p>
 
-        <!-- SIGNATURE DISHES CATEGORY (2 Items) -->
+        <!-- 1. SIGNATURE DISHES CATEGORY -->
         <h2 class="menu-section-title">Signature Masterpieces</h2>
         <div class="grid-container">
             <div class="food-card">
                 <div>
-                    <div class="food-header">
-                        <h3 class="food-name">The Emperor's Platter</h3>
-                        <span class="food-price">$38.00</span>
-                    </div>
+                    <h3 class="food-name">The Emperor's Platter</h3>
                     <p class="food-description">Our supreme culinary dish. Slow-cooked premium cut meat, heavily infused with exotic spices and aromatic herbs.</p>
+                    <span class="food-price">$38.00</span>
                 </div>
                 <div class="payment-box">
                     <button class="checkout-btn">Add to Cart</button>
@@ -124,11 +100,9 @@
 
             <div class="food-card">
                 <div>
-                    <div class="food-header">
-                        <h3 class="food-name">Pan-Seared Herb Chilean Seabass</h3>
-                        <span class="food-price">$38.50</span>
-                    </div>
+                    <h3 class="food-name">Pan-Seared Herb Chilean Seabass</h3>
                     <p class="food-description">Wild-caught Chilean seabass pan-seared until crisp, resting on a bed of creamy saffron risotto and drizzled with a citrus-herb butter infusion.</p>
+                    <span class="food-price">$38.50</span>
                 </div>
                 <div class="payment-box">
                     <button class="checkout-btn">Add to Cart</button>
@@ -136,16 +110,14 @@
             </div>
         </div>
 
-        <!-- REGIONAL DISHES CATEGORY (4 Items) -->
+        <!-- 2. REGIONAL DISHES CATEGORY -->
         <h2 class="menu-section-title">Regional Traditions</h2>
         <div class="grid-container">
             <div class="food-card">
                 <div>
-                    <div class="food-header">
-                        <h3 class="food-name">Traditional Kacchi Biryani</h3>
-                        <span class="food-price">$18.99</span>
-                    </div>
+                    <h3 class="food-name">Traditional Kacchi Biryani</h3>
                     <p class="food-description">An authentic regional classic featuring tender raw mutton layered with fragrant basmati rice, potatoes, and a blend of aromatic spices, slow-cooked to perfection.</p>
+                    <span class="food-price">$18.99</span>
                 </div>
                 <div class="payment-box">
                     <button class="checkout-btn">Add to Cart</button>
@@ -154,11 +126,9 @@
 
             <div class="food-card">
                 <div>
-                    <div class="food-header">
-                        <h3 class="food-name">Tuscan Garlic Chicken Pasta</h3>
-                        <span class="food-price">$16.50</span>
-                    </div>
+                    <h3 class="food-name">Tuscan Garlic Chicken Pasta</h3>
                     <p class="food-description">A rustic regional Italian favorite. Juicy grilled chicken strips tossed with fettuccine, sun-dried tomatoes, and fresh spinach in a rich garlic cream sauce.</p>
+                    <span class="food-price">$16.50</span>
                 </div>
                 <div class="payment-box">
                     <button class="checkout-btn">Add to Cart</button>
@@ -167,11 +137,9 @@
 
             <div class="food-card">
                 <div>
-                    <div class="food-header">
-                        <h3 class="food-name">Oaxacan Mole Poblano</h3>
-                        <span class="food-price">$19.00</span>
-                    </div>
+                    <h3 class="food-name">Oaxacan Mole Poblano</h3>
                     <p class="food-description">Tender braised chicken thigh smothered in a complex, traditional Mexican dark mole sauce crafted from rich chiles, spices, and a hint of chocolate.</p>
+                    <span class="food-price">$19.00</span>
                 </div>
                 <div class="payment-box">
                     <button class="checkout-btn">Add to Cart</button>
@@ -180,11 +148,9 @@
 
             <div class="food-card">
                 <div>
-                    <div class="food-header">
-                        <h3 class="food-name">Louisiana Seafood Gumbo</h3>
-                        <span class="food-price">$17.50</span>
-                    </div>
+                    <h3 class="food-name">Louisiana Seafood Gumbo</h3>
                     <p class="food-description">A deeply flavorful southern staple packed with fresh shrimp, crabmeat, and spicy andouille sausage, slow-simmered in a dark roux base over rice.</p>
+                    <span class="food-price">$17.50</span>
                 </div>
                 <div class="payment-box">
                     <button class="checkout-btn">Add to Cart</button>
@@ -192,16 +158,14 @@
             </div>
         </div>
 
-        <!-- DESSERT CATEGORIES (3 Items) -->
+        <!-- 3. DESSERT CATEGORIES -->
         <h2 class="menu-section-title">Sweet Desserts</h2>
         <div class="grid-container">
             <div class="food-card">
                 <div>
-                    <div class="food-header">
-                        <h3 class="food-name">Truffle Infused Bites</h3>
-                        <span class="food-price">$14.00</span>
-                    </div>
+                    <h3 class="food-name">Truffle Infused Bites</h3>
                     <p class="food-description">Crispy artisan pastry cases stuffed with wild forest mushrooms and aromatic white truffle oil glaze.</p>
+                    <span class="food-price">$14.00</span>
                 </div>
                 <div class="payment-box">
                     <button class="checkout-btn">Add to Cart</button>
@@ -210,5 +174,14 @@
 
             <div class="food-card">
                 <div>
-                    <div class="food-header">
-                        <h3 class="food-name">Classic Madagascar Crème Brûlée</h3>
+                    <h3 class="food-name">Classic Madagascar Crème Brûlée</h3>
+                    <p class="food-description">A silky, smooth vanilla bean custard base topped with a layer of hardened, perfectly torched caramelized sugar crackle.</p>
+                    <span class="food-price">$9.00</span>
+                </div>
+                <div class="payment-box">
+                    <button class="checkout-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div>
