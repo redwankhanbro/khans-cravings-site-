@@ -3,139 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khans Cravings | Premium Dining</title>
+    <title>Khans Cravings - Menu</title>
     <style>
-        body { font-family: 'Georgia', serif; margin: 0; padding: 0; background-color: #fcfbf7; color: #222; }
-        header { background-color: #1a1a1a; color: #dfb76c; padding: 30px 20px; border-bottom: 3px solid #dfb76c; position: relative; }
-        .header-main { display: flex; justify-content: center; align-items: center; max-width: 800px; margin: 0 auto; position: relative; }
-        h1 { margin: 0; font-size: 2.4rem; letter-spacing: 3px; font-weight: 400; text-align: center; }
-        .tagline { font-style: italic; color: #fff; margin-top: 8px; font-size: 1rem; letter-spacing: 1px; text-align: center; }
-        .header-cart-btn { background-color: #dfb76c; color: #1a1a1a; font-family: sans-serif; font-size: 0.85rem; font-weight: bold; text-decoration: none; padding: 8px 14px; border-radius: 20px; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-left: 20px; }
-        .header-cart-btn:hover { background-color: #f0cc85; }
-        .cart-count { background-color: #1a1a1a; color: #dfb76c; padding: 2px 6px; border-radius: 50px; font-size: 0.75rem; }
-        .container { max-width: 800px; margin: 20px auto; padding: 0 20px; }
-        .intro-text { text-align: center; font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: 25px; }
-        .menu-section-title { text-align: center; font-size: 1.6rem; color: #1a1a1a; border-bottom: 1px solid #dfb76c; padding-bottom: 6px; margin-top: 35px; margin-bottom: 20px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; }
-        .menu-item { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed #eee; }
-        .menu-item-details { flex-grow: 1; padding-right: 20px; }
-        .menu-item-name { font-size: 1.1rem; font-weight: bold; color: #b8860b; }
-        .menu-item-description { font-size: 0.9rem; color: #666; margin-top: 4px; font-style: italic; line-height: 1.4; }
-        .menu-item-price { font-size: 1.1rem; font-weight: bold; color: #1a1a1a; white-space: nowrap; }
-        .payment-box { background-color: #1a1a1a; color: white; padding: 25px 20px; border-radius: 8px; text-align: center; margin-top: 40px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); border: 1px solid #dfb76c; }
-        .payment-box h3 { color: #dfb76c; margin-top: 0; margin-bottom: 10px; font-size: 1.4rem; font-weight: 400; letter-spacing: 1px; }
-        .payment-box p { color: #ccc; font-size: 0.95rem; margin-bottom: 15px; margin-top: 0; }
-        .checkout-btn { display: inline-block; background-color: #dfb76c; color: #1a1a1a; font-size: 1rem; font-weight: bold; text-decoration: none; padding: 12px 30px; border-radius: 4px; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 1px; border: none; cursor: pointer; }
-        .checkout-btn:hover { background-color: #f0cc85; }
-        .badge-container { display: flex; justify-content: center; gap: 15px; margin-top: 15px; color: #888; font-size: 0.8rem; }
-        footer { background-color: #1a1a1a; color: #888; text-align: center; padding: 20px; margin-top: 40px; font-size: 0.85rem; }
+        /* Your Original Website Styles */
+        header { background-color: #1a1a1a; color: #fff; padding: 10px 20px; }
+        .header-main { display: flex; justify-content: space-between; align-items: center; }
+        h1 { margin: 0; font-size: 2.4rem; letter-spacing: 1px; color: #fff; }
+        .tagline { font-style: italic; color: #fff; margin-top: 5px; }
+        .header-cart-btn { background-color: #dfb76c; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .header-cart-btn:hover { background-color: #cfab60; }
+        .cart-count { background-color: #1a1a1a; color: #fff; padding: 2px 6px; border-radius: 50%; margin-left: 5px; }
+        .container { max-width: 1000px; margin: 20px auto; padding: 0 15px; }
+        .intro-text { text-align: center; font-size: 1.1rem; color: #555; line-height: 1.6; margin-bottom: 40px; }
+        .menu-section-title { text-align: center; color: #1a1a1a; border-bottom: 2px solid #dfb76c; padding-bottom: 5px; margin-top: 40px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* The Two Missing CSS Layout Blocks Installed Here */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        .food-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #eee;
+        }
+
+        /* Menu Item Text Layouts */
+        .food-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+        .food-name { font-size: 1.25rem; font-weight: bold; color: #dfb76c; margin: 0; }
+        .food-price { font-size: 1.2rem; color: #1a1a1a; font-weight: bold; }
+        .food-description { font-size: 0.95rem; color: #666; line-height: 1.5; margin: 0 0 15px 0; flex-grow: 1; }
+        
+        /* Secure Checkout Button Styles */
+        .payment-box { background-color: #1a1a1a; padding: 15px; border-radius: 6px; text-align: center; margin-top: auto; }
+        .checkout-btn { display: inline-block; background-color: #dfb76c; color: #1a1a1a; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; text-decoration: none; }
+        .checkout-btn:hover { background-color: #f0c370; }
+        
+        footer { background-color: #1a1a1a; color: #fff; text-align: center; padding: 15px; margin-top: 50px; }
+        
         @media (max-width: 480px) {
-            .header-main { flex-direction: column; gap: 12px; }
-            .header-cart-btn { margin-left: 0; }
+            .header-main { flex-direction: column; gap: 10px; text-align: center; }
+            .header-cart-btn { margin-left: 0; width: 100%; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Header Section -->
     <header>
         <div class="header-main">
-            <h1>KHANS CRAVINGS</h1>
-            <button class="header-cart-btn">🛒 Cart <span class="cart-count">0</span></button>
+            <div>
+                <h1>KHANS CRAVINGS</h1>
+                <div class="tagline">Where Culinary Tradition Meets Innovation</div>
+            </div>
+            <button class="header-cart-btn">🛒 CART <span class="cart-count">0</span></button>
         </div>
-        <div class="tagline">Where Culinary Tradition Meets Innovation</div>
     </header>
+
     <div class="container">
         <p class="intro-text">Experience an elite dining journey featuring our critically acclaimed house specialties, crafted masterfully by our culinary artisans to satisfy your deepest cravings.</p>
-        
-        <div class="menu-section-title">Appetizers</div>
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Truffle Infused Bites</div>
-                <div class="menu-item-description">Crispy artisan pastry cases stuffed with wild forest mushrooms and aromatic white truffle oil glaze.</div>
+
+        <!-- SIGNATURE DISHES CATEGORY (2 Items) -->
+        <h2 class="menu-section-title">Signature Masterpieces</h2>
+        <div class="grid-container">
+            <div class="food-card">
+                <div>
+                    <div class="food-header">
+                        <h3 class="food-name">The Emperor's Platter</h3>
+                        <span class="food-price">$38.00</span>
+                    </div>
+                    <p class="food-description">Our supreme culinary dish. Slow-cooked premium cut meat, heavily infused with exotic spices and aromatic herbs.</p>
+                </div>
+                <div class="payment-box">
+                    <button class="checkout-btn">Add to Cart</button>
+                </div>
             </div>
-            <div class="menu-item-price">$14.00</div>
+
+            <div class="food-card">
+                <div>
+                    <div class="food-header">
+                        <h3 class="food-name">Pan-Seared Herb Chilean Seabass</h3>
+                        <span class="food-price">$38.50</span>
+                    </div>
+                    <p class="food-description">Wild-caught Chilean seabass pan-seared until crisp, resting on a bed of creamy saffron risotto and drizzled with a citrus-herb butter infusion.</p>
+                </div>
+                <div class="payment-box">
+                    <button class="checkout-btn">Add to Cart</button>
+                </div>
+            </div>
         </div>
 
-        <div class="menu-section-title">Signature Masterpieces</div>
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">The Emperor's Platter</div>
-                <div class="menu-item-description">Our supreme culinary dish. Slow-cooked premium cut meat, heavily infused with exotic spices.</div>
+        <!-- REGIONAL DISHES CATEGORY (4 Items) -->
+        <h2 class="menu-section-title">Regional Traditions</h2>
+        <div class="grid-container">
+            <div class="food-card">
+                <div>
+                    <div class="food-header">
+                        <h3 class="food-name">Traditional Kacchi Biryani</h3>
+                        <span class="food-price">$18.99</span>
+                    </div>
+                    <p class="food-description">An authentic regional classic featuring tender raw mutton layered with fragrant basmati rice, potatoes, and a blend of aromatic spices, slow-cooked to perfection.</p>
+                </div>
+                <div class="payment-box">
+                    <button class="checkout-btn">Add to Cart</button>
+                </div>
             </div>
-            <div class="menu-item-price">$38.00</div>
-        </div>
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Royal Saffron Seabass</div>
-                <div class="menu-item-description">Pan-seared Chilean seabass dressed in a rich, velvety Kashmiri saffron reduction broth.</div>
+
+            <div class="food-card">
+                <div>
+                    <div class="food-header">
+                        <h3 class="food-name">Tuscan Garlic Chicken Pasta</h3>
+                        <span class="food-price">$16.50</span>
+                    </div>
+                    <p class="food-description">A rustic regional Italian favorite. Juicy grilled chicken strips tossed with fettuccine, sun-dried tomatoes, and fresh spinach in a rich garlic cream sauce.</p>
+                </div>
+                <div class="payment-box">
+                    <button class="checkout-btn">Add to Cart</button>
+                </div>
             </div>
-            <div class="menu-item-price">$42.00</div>
+
+            <div class="food-card">
+                <div>
+                    <div class="food-header">
+                        <h3 class="food-name">Oaxacan Mole Poblano</h3>
+                        <span class="food-price">$19.00</span>
+                    </div>
+                    <p class="food-description">Tender braised chicken thigh smothered in a complex, traditional Mexican dark mole sauce crafted from rich chiles, spices, and a hint of chocolate.</p>
+                </div>
+                <div class="payment-box">
+                    <button class="checkout-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div>
+                    <div class="food-header">
+                        <h3 class="food-name">Louisiana Seafood Gumbo</h3>
+                        <span class="food-price">$17.50</span>
+                    </div>
+                    <p class="food-description">A deeply flavorful southern staple packed with fresh shrimp, crabmeat, and spicy andouille sausage, slow-simmered in a dark roux base over rice.</p>
+                </div>
+                <div class="payment-box">
+                    <button class="checkout-btn">Add to Cart</button>
+                </div>
+            </div>
         </div>
 
-        <div class="menu-section-title">Regional Dishes</div>
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Old Dhaka Biryani</div>
-                <div class="menu-item-description">Authentic heritage recipe featuring aromatic kalijira rice and tender, slow-simmered spiced mutton.</div>
+        <!-- DESSERT CATEGORIES (3 Items) -->
+        <h2 class="menu-section-title">Sweet Desserts</h2>
+        <div class="grid-container">
+            <div class="food-card">
+                <div>
+                    <div class="food-header">
+                        <h3 class="food-name">Truffle Infused Bites</h3>
+                        <span class="food-price">$14.00</span>
+                    </div>
+                    <p class="food-description">Crispy artisan pastry cases stuffed with wild forest mushrooms and aromatic white truffle oil glaze.</p>
+                </div>
+                <div class="payment-box">
+                    <button class="checkout-btn">Add to Cart</button>
+                </div>
             </div>
-            <div class="menu-item-price">$24.00</div>
-        </div>
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Nizami Dum Murg</div>
-                <div class="menu-item-description">Slow-cooked chicken in an opulent almond and cashew gravy, sealed with dough to lock in smoke flavors.</div>
-            </div>
-            <div class="menu-item-price">$22.00</div>
-        </div>
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Coastal Prawn Malai Curry</div>
-                <div class="menu-item-description">Jumbo tiger prawns simmered gently in a fragrant, creamy coconut milk gravy base infused with green chilis.</div>
-            </div>
-            <div class="menu-item-price">$26.00</div>
-        </div>
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Shahi Paneer Pasanda</div>
-                <div class="menu-item-description">Stuffed cottage cheese triangles folded inside a regal, creamy tomato sauce sweet ginger paste layer.</div>
-            </div>
-            <div class="menu-item-price">$19.00</div>
-        </div>
 
-        <div class="menu-section-title">Desserts</div>
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Gilded Pistachio Kulfi</div>
-                <div class="menu-item-description">Traditional dense frozen ice cream infused heavily with roasted pistachios, cardamoms, and edible gold leaf.</div>
+            <div class="food-card">
+                <div>
+                    <div class="food-header">
+                        <h3 class="food-name">Classic Madagascar Crème Brûlée</h3>
+                        <span class="food-price">$9.00</span>
+                    </div>
+                    <p class="food-description">A silky, smooth vanilla bean custard base topped with a layer of hardened, perfectly torched caramelized sugar crackle.</p>
+                </div>
+                <div class="payment-box">
+                    <button class="checkout-btn">Add to Cart</button>
+                </div>
             </div>
-            <div class="menu-item-price">$9.50</div>
-        </div>
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Saffron Infused Rasmalai</div>
-                <div class="menu-item-description">Soft, spongy cottage cheese discs soaked in sweetened, thickened milk delicately scented with saffron threads.</div>
-            </div>
-            <div class="menu-item-price">$8.00</div>
-        </div>
-        <div class="menu-item">
-            <div class="menu-item-details">
-                <div class="menu-item-name">Rosewater Baked Cheesecake</div>
-                <div class="menu-item-description">Fusion dessert marrying a rich New York style baked texture with fresh Persian rosewater syrup glazes.</div>
-            </div>
-            <div class="menu-item-price">$11.00</div>
-        </div>
 
-        <div class="payment-box">
-            <h3>Secure Order &amp; Digital Reservation</h3>
-            <p>Place an order or secure your table selection online. We accept all major cards and secure mobile wallets.</p>
-            <a href="#" target="_blank" class="checkout-btn">Proceed to Secure Checkout</a>
-            <div class="badge-container">
-                <span>💳 Visa / Mastercard / Amex</span>
-                <span>•</span>
-                <span>🔒 256-Bit SSL Encrypted</span>
-            </div>
-        </div>
+            <div class="food-card">
+                <div>
+                    <div class="food-header">
+                        <h3 class="food-name">Traditional Saffron Rasmalai</h3>
+                        <span class="food-price">$7.50</span>
+                    </div>
+                    <p class="food-description">Soft, flattened cottage cheese patties soaked in a rich, sweet condensed milk syrup flavored beautifully with crushed saffron threads and pistachios.</p>
+                </div>
+                <div class="payment-box">
+                    <button class="checkout-btn">Add to Cart</button>
+                </div>
     </div>
-    <footer>
-        <p>&copy; 2026 Khans Cravings. All Rights Reserved.</p>
-    </footer>
-</body>
-</html>
+                
