@@ -6,9 +6,15 @@
     <title>Khans Cravings - Menu</title>
     <style>
         /* Base Page Styles */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; color: #333; margin: 0; padding: 0; }
-        header { background-color: #1a1a1a; color: #fff; padding: 15px 20px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; color: #333; margin: 0; padding: 0; position: relative; }
+        header { background-color: #1a1a1a; color: #fff; padding: 15px 20px; position: sticky; top: 0; z-index: 999; }
         .header-main { display: flex; justify-content: space-between; align-items: center; }
+        .header-left-group { display: flex; align-items: center; gap: 15px; }
+        
+        /* Sidebar Toggle Trigger Button */
+        .sidebar-toggle-btn { background-color: #dfb76c; border: none; padding: 8px 14px; border-radius: 4px; font-weight: bold; color: #1a1a1a; cursor: pointer; font-size: 1rem; }
+        .sidebar-toggle-btn:hover { background-color: #cfab60; }
+        
         h1 { margin: 0; font-size: 2.2rem; letter-spacing: 1px; color: #fff; }
         .tagline { font-style: italic; color: #fff; margin-top: 5px; font-size: 0.95rem; }
         .header-cart-btn { background-color: #dfb76c; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; color: #1a1a1a; }
@@ -18,7 +24,73 @@
         .intro-text { text-align: center; font-size: 1.1rem; color: #555; line-height: 1.6; margin-bottom: 40px; }
         .menu-section-title { text-align: center; color: #1a1a1a; border-bottom: 2px solid #dfb76c; padding-bottom: 5px; margin-top: 40px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* Mobile Responsive Grid System */
+        /* --- NEW: Left Sliding Sidebar Layout System --- */
+        .sidebar-drawer {
+            position: fixed;
+            top: 0;
+            left: -280px; /* Hidden offscreen by default */
+            width: 280px;
+            height: 100%;
+            background-color: #1a1a1a;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: left 0.3s ease-in-out;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Activated visible layout class */
+        .sidebar-drawer.open {
+            left: 0;
+        }
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #dfb76c;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .sidebar-brand { color: #fff; font-size: 1.3rem; font-weight: bold; letter-spacing: 1px; }
+        .sidebar-close-btn { background: none; border: none; color: #dfb76c; font-size: 1.5rem; cursor: pointer; font-weight: bold; }
+        
+        /* Navigation Option Links */
+        .sidebar-menu-list { list-style: none; padding: 0; margin: 0; }
+        .sidebar-menu-item { margin-bottom: 8px; }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #ccc;
+            text-decoration: none;
+            padding: 12px 15px;
+            font-size: 1.05rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            background-color: #dfb76c;
+            color: #1a1a1a;
+            font-weight: bold;
+        }
+        /* Semi-transparent dark overlay background layer when menu opens */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* Responsive Grid System */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -36,12 +108,8 @@
             justify-content: space-between;
             border: 1px solid #eee;
         }
-
-        /* Food Card Content Formatting */
         .food-name { font-size: 1.3rem; font-weight: bold; color: #dfb76c; margin: 0 0 10px 0; }
         .food-description { font-size: 0.95rem; color: #666; line-height: 1.5; margin: 0 0 15px 0; flex-grow: 1; }
-        
-        /* Custom Request: Price displayed prominently below description */
         .food-price { font-size: 1.25rem; color: #1a1a1a; font-weight: bold; margin-bottom: 15px; display: block; }
         
         /* Payment/Checkout Action Box */
@@ -57,11 +125,12 @@
         
         footer { background-color: #1a1a1a; color: #fff; text-align: center; padding: 20px; margin-top: 40px; font-size: 0.9rem; }
         
-        /* Smooth Mobile Adaptability Override */
+        /* Mobile Adaptability Override */
         @media (max-width: 480px) {
             header { padding: 15px; }
-            h1 { font-size: 1.8rem; }
+            h1 { font-size: 1.6rem; }
             .header-main { flex-direction: column; gap: 12px; text-align: center; }
+            .header-left-group { width: 100%; justify-content: space-between; }
             .header-cart-btn { margin-left: 0; width: 100%; }
             .badges-container { gap: 8px; justify-content: center; }
             .payment-badge { padding: 6px 10px; font-size: 0.8rem; }
@@ -70,12 +139,46 @@
 </head>
 <body>
 
+    <!-- Transparent Background Overlay Click Layer -->
+    <div class="sidebar-overlay" id="menuOverlay"></div>
+
+    <!-- NEW LEFT SIDEBAR DRAWER MENU PANEL (Contains your 5 requested options) -->
+    <div class="sidebar-drawer" id="sideNavDrawer">
+        <div class="sidebar-header">
+            <span class="sidebar-brand">NAVIGATION</span>
+            <button class="sidebar-close-btn" id="closeDrawerX">×</button>
+        </div>
+        <ul class="sidebar-menu-list">
+            <li class="sidebar-menu-item">
+                <a href="#" class="sidebar-link active" id="link-home">🏠 Home</a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="#specialties-section" class="sidebar-link" id="link-spec">⭐ Specialties</a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="#payment-methods-box" class="sidebar-link" id="link-pay">💳 Payment Box</a>
+            </li>
+            <li class="sidebar-menu-item">
+                <!-- Choice 4: Fast track user directly down to desserts grid -->
+                <a href="#desserts-section" class="sidebar-link" id="link-dessert">🍰 Sweet Desserts</a>
+            </li>
+            <li class="sidebar-menu-item">
+                <!-- Choice 5: Clean contact detail jump anchor -->
+                <a href="#footer-contact" class="sidebar-link" id="link-contact">📞 Contact Us</a>
+            </li>
+        </ul>
+    </div>
+
     <!-- Header Section -->
     <header>
         <div class="header-main">
-            <div>
-                <h1>KHANS CRAVINGS</h1>
-                <div class="tagline">Where Culinary Tradition Meets Innovation</div>
+            <div class="header-left-group">
+                <!-- New Tap-to-Slide menu control switch button -->
+                <button class="sidebar-toggle-btn" id="openDrawerMenu">☰ Menu</button>
+                <div>
+                    <h1>KHANS CRAVINGS</h1>
+                    <div class="tagline">Where Culinary Tradition Meets Innovation</div>
+                </div>
             </div>
             <button class="header-cart-btn">🛒 CART <span class="cart-count">0</span></button>
         </div>
@@ -85,7 +188,7 @@
         <p class="intro-text">Experience an elite dining journey featuring our critically acclaimed house specialties, crafted masterfully by our culinary artisans to satisfy your deepest cravings.</p>
 
         <!-- 1. SIGNATURE DISHES CATEGORY -->
-        <h2 class="menu-section-title">Signature Masterpieces</h2>
+        <h2 class="menu-section-title" id="specialties-section">Signature Masterpieces</h2>
         <div class="grid-container">
             <div class="food-card">
                 <div>
@@ -96,92 +199,4 @@
                 <div class="payment-box">
                     <button class="checkout-btn">Add to Cart</button>
                 </div>
-            </div>
-
-            <div class="food-card">
-                <div>
-                    <h3 class="food-name">Pan-Seared Herb Chilean Seabass</h3>
-                    <p class="food-description">Wild-caught Chilean seabass pan-seared until crisp, resting on a bed of creamy saffron risotto and drizzled with a citrus-herb butter infusion.</p>
-                    <span class="food-price">$38.50</span>
-                </div>
-                <div class="payment-box">
-                    <button class="checkout-btn">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2. REGIONAL DISHES CATEGORY -->
-        <h2 class="menu-section-title">Regional Traditions</h2>
-        <div class="grid-container">
-            <div class="food-card">
-                <div>
-                    <h3 class="food-name">Traditional Kacchi Biryani</h3>
-                    <p class="food-description">An authentic regional classic featuring tender raw mutton layered with fragrant basmati rice, potatoes, and a blend of aromatic spices, slow-cooked to perfection.</p>
-                    <span class="food-price">$18.99</span>
-                </div>
-                <div class="payment-box">
-                    <button class="checkout-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="food-card">
-                <div>
-                    <h3 class="food-name">Tuscan Garlic Chicken Pasta</h3>
-                    <p class="food-description">A rustic regional Italian favorite. Juicy grilled chicken strips tossed with fettuccine, sun-dried tomatoes, and fresh spinach in a rich garlic cream sauce.</p>
-                    <span class="food-price">$16.50</span>
-                </div>
-                <div class="payment-box">
-                    <button class="checkout-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="food-card">
-                <div>
-                    <h3 class="food-name">Oaxacan Mole Poblano</h3>
-                    <p class="food-description">Tender braised chicken thigh smothered in a complex, traditional Mexican dark mole sauce crafted from rich chiles, spices, and a hint of chocolate.</p>
-                    <span class="food-price">$19.00</span>
-                </div>
-                <div class="payment-box">
-                    <button class="checkout-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="food-card">
-                <div>
-                    <h3 class="food-name">Louisiana Seafood Gumbo</h3>
-                    <p class="food-description">A deeply flavorful southern staple packed with fresh shrimp, crabmeat, and spicy andouille sausage, slow-simmered in a dark roux base over rice.</p>
-                    <span class="food-price">$17.50</span>
-                </div>
-                <div class="payment-box">
-                    <button class="checkout-btn">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3. DESSERT CATEGORIES -->
-        <h2 class="menu-section-title">Sweet Desserts</h2>
-        <div class="grid-container">
-            <div class="food-card">
-                <div>
-                    <h3 class="food-name">Truffle Infused Bites</h3>
-                    <p class="food-description">Crispy artisan pastry cases stuffed with wild forest mushrooms and aromatic white truffle oil glaze.</p>
-                    <span class="food-price">$14.00</span>
-                </div>
-                <div class="payment-box">
-                    <button class="checkout-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="food-card">
-                <div>
-                    <h3 class="food-name">Classic Madagascar Crème Brûlée</h3>
-                    <p class="food-description">A silky, smooth vanilla bean custard base topped with a layer of hardened, perfectly torched caramelized sugar crackle.</p>
-                    <span class="food-price">$9.00</span>
-                </div>
-                <div class="payment-box">
-                    <button class="checkout-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="food-card">
-                <div>
+    
