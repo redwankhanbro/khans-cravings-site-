@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khans Cravings - Menu</title>
     <style>
-        /* Your Original Website Styles */
+        /* Original Website Styles */
         header { background-color: #1a1a1a; color: #fff; padding: 10px 20px; }
         .header-main { display: flex; justify-content: space-between; align-items: center; }
         h1 { margin: 0; font-size: 2.4rem; letter-spacing: 1px; color: #fff; }
@@ -17,7 +17,7 @@
         .intro-text { text-align: center; font-size: 1.1rem; color: #555; line-height: 1.6; margin-bottom: 40px; }
         .menu-section-title { text-align: center; color: #1a1a1a; border-bottom: 2px solid #dfb76c; padding-bottom: 5px; margin-top: 40px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* The Two Missing CSS Layout Blocks Installed Here */
+        /* Responsive Grid Layout */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -36,22 +36,57 @@
             border: 1px solid #eee;
         }
 
-        /* Menu Item Text Layouts */
+        /* Menu Item Content Details */
         .food-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
         .food-name { font-size: 1.25rem; font-weight: bold; color: #dfb76c; margin: 0; }
         .food-price { font-size: 1.2rem; color: #1a1a1a; font-weight: bold; }
         .food-description { font-size: 0.95rem; color: #666; line-height: 1.5; margin: 0 0 15px 0; flex-grow: 1; }
         
-        /* Secure Checkout Button Styles */
+        /* Add-to-Cart Action Elements */
         .payment-box { background-color: #1a1a1a; padding: 15px; border-radius: 6px; text-align: center; margin-top: auto; }
         .checkout-btn { display: inline-block; background-color: #dfb76c; color: #1a1a1a; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; text-decoration: none; }
         .checkout-btn:hover { background-color: #f0c370; }
         
-        footer { background-color: #1a1a1a; color: #fff; text-align: center; padding: 15px; margin-top: 50px; }
+        /* NEW: Footer Payment Methods Section Styling */
+        .payment-methods-section {
+            text-align: center;
+            margin: 50px auto 20px auto;
+            padding: 20px;
+            border-top: 1px dashed #dfb76c;
+            max-width: 600px;
+        }
+        .payment-methods-section h4 {
+            color: #1a1a1a;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        .badges-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .payment-badge {
+            border: 1px solid #dfb76c;
+            color: #1a1a1a;
+            background-color: #fff;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        footer { background-color: #1a1a1a; color: #fff; text-align: center; padding: 15px; margin-top: 30px; }
         
         @media (max-width: 480px) {
             .header-main { flex-direction: column; gap: 10px; text-align: center; }
             .header-cart-btn { margin-left: 0; width: 100%; }
+            .badges-container { gap: 10px; }
         }
     </style>
 </head>
@@ -177,25 +212,3 @@
                 <div>
                     <div class="food-header">
                         <h3 class="food-name">Classic Madagascar Crème Brûlée</h3>
-                        <span class="food-price">$9.00</span>
-                    </div>
-                    <p class="food-description">A silky, smooth vanilla bean custard base topped with a layer of hardened, perfectly torched caramelized sugar crackle.</p>
-                </div>
-                <div class="payment-box">
-                    <button class="checkout-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="food-card">
-                <div>
-                    <div class="food-header">
-                        <h3 class="food-name">Traditional Saffron Rasmalai</h3>
-                        <span class="food-price">$7.50</span>
-                    </div>
-                    <p class="food-description">Soft, flattened cottage cheese patties soaked in a rich, sweet condensed milk syrup flavored beautifully with crushed saffron threads and pistachios.</p>
-                </div>
-                <div class="payment-box">
-                    <button class="checkout-btn">Add to Cart</button>
-                </div>
-    </div>
-                
