@@ -1,173 +1,273 @@
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khans Cravings - Menu</title>
-    <style>
-        /* Base Styling Context */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; color: #333; margin: 0; padding: 0; position: relative; }
-        header { background-color: #1a1a1a; color: #fff; padding: 15px 20px; position: sticky; top: 0; z-index: 999; }
-        .header-main { display: flex; justify-content: space-between; align-items: center; }
-        .header-left-group { display: flex; align-items: center; gap: 15px; }
-        
-        /* Sidebar Toggle Trigger Button Layout */
-        .sidebar-toggle-btn { background-color: #dfb76c; border: none; padding: 12px 16px; border-radius: 4px; font-weight: bold; color: #1a1a1a; cursor: pointer; font-size: 1rem; }
-        .sidebar-toggle-btn:hover { background-color: #cfab60; }
-        
-        h1 { margin: 0; font-size: 2.2rem; letter-spacing: 1px; color: #fff; }
-        .tagline { font-style: italic; color: #fff; margin-top: 5px; font-size: 0.95rem; }
-        
-        /* Cart Bar Presentation */
-        .cart-bar-row { background-color: #dfb76c; text-align: center; padding: 10px; margin-bottom: 20px; }
-        .header-cart-btn { background: none; border: none; cursor: pointer; font-weight: bold; color: #1a1a1a; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
-        .cart-count { background-color: #1a1a1a; color: #fff; padding: 2px 8px; border-radius: 50%; margin-left: 5px; }
-        
-        .container { max-width: 1000px; margin: 20px auto; padding: 0 15px; box-sizing: border-box; }
-        .intro-text { text-align: center; font-size: 1.1rem; color: #555; line-height: 1.6; margin-bottom: 40px; }
-        .menu-section-title { text-align: center; color: #1a1a1a; border-bottom: 2px solid #dfb76c; padding-bottom: 5px; margin-top: 40px; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        
-        /* Left Sliding Sidebar Navigation System */
-        .sidebar-drawer {
-            position: fixed;
-            top: 0;
-            left: -280px;
-            width: 280px;
-            height: 100%;
-            background-color: #1a1a1a;
-            box-shadow: 4px 0 10px rgba(0,0,0,0.3);
-            z-index: 1000;
-            transition: left 0.3s ease-in-out;
-            padding: 20px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-        }
-        .sidebar-drawer.open { left: 0; }
-        .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #dfb76c; padding-bottom: 15px; margin-bottom: 20px; }
-        .sidebar-brand { color: #fff; font-size: 1.3rem; font-weight: bold; letter-spacing: 1px; }
-        .sidebar-close-btn { background: none; border: none; color: #dfb76c; font-size: 1.8rem; cursor: pointer; font-weight: bold; }
-        
-        /* Navigation Links List */
-        .sidebar-menu-list { list-style: none; padding: 0; margin: 0; }
-        .sidebar-menu-item { margin-bottom: 8px; }
-        .sidebar-link {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: #ccc;
-            text-decoration: none;
-            padding: 12px 15px;
-            font-size: 1.05rem;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-        .sidebar-link:hover, .sidebar-link.active { background-color: #dfb76c; color: #1a1a1a; font-weight: bold; }
-        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 999; display: none; }
-        .sidebar-overlay.active { display: block; }
-
-        /* Responsive Columns Grid Configuration */
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; margin-bottom: 30px; }
-        .food-card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #eee; }
-        .food-name { font-size: 1.3rem; font-weight: bold; color: #dfb76c; margin: 0 0 10px 0; }
-        .food-description { font-size: 0.95rem; color: #666; line-height: 1.5; margin: 0 0 15px 0; flex-grow: 1; }
-        .food-price { font-size: 1.25rem; color: #1a1a1a; font-weight: bold; margin-bottom: 15px; display: block; }
-        
-        /* Order Button Elements Layout */
-        .payment-box { background-color: #1a1a1a; padding: 12px; border-radius: 6px; text-align: center; margin-top: auto; }
-        .checkout-btn { display: inline-block; background-color: #dfb76c; color: #1a1a1a; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold; text-decoration: none; box-sizing: border-box; }
-        .checkout-btn:hover { background-color: #f0c370; }
-        
-        /* Payment Verification Footprint Block */
-        .payment-methods-section { text-align: center; margin: 50px auto 20px auto; padding-top: 25px; border-top: 1px dashed #dfb76c; max-width: 600px; }
-        .payment-methods-section h4 { color: #1a1a1a; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; margin-top: 0; }
-        .badges-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; }
-        .payment-badge { border: 1px solid #dfb76c; color: #1a1a1a; background-color: #fff; padding: 6px 14px; font-size: 0.85rem; font-weight: bold; border-radius: 4px; letter-spacing: 1px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        
-        footer { background-color: #1a1a1a; color: #fff; text-align: center; padding: 20px; margin-top: 40px; font-size: 0.9rem; }
-        
-        /* Handset Screen Display Adjustments */
-        @media (max-width: 480px) {
-            header { padding: 15px; }
-            h1 { font-size: 1.5rem; }
-            .header-main { flex-direction: row; justify-content: space-between; gap: 5px; }
-            .tagline { font-size: 0.8rem; }
-            .badges-container { gap: 8px; }
-            .payment-badge { padding: 6px 10px; font-size: 0.8rem; }
-        }
-    </style>
+    <title>Khan's Cravings & Dining | Premium Culinary Experience</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Dim Click Shield Backdrop Layer -->
-    <div class="sidebar-overlay" id="menuOverlay"></div>
-
-    <!-- 5 COMPACT SYSTEM NAVIGATION OPTIONS DRAWER SIDE PANEL -->
-    <div class="sidebar-drawer" id="sideNavDrawer">
-        <div class="sidebar-header">
-            <span class="sidebar-brand">NAVIGATION</span>
-            <button class="sidebar-close-btn" id="closeDrawerX">×</button>
-        </div>
-        <ul class="sidebar-menu-list">
-            <li class="sidebar-menu-item"><a href="#" class="sidebar-link active" id="link-home">🏠 Home</a></li>
-            <li class="sidebar-menu-item"><a href="#specialties-section" class="sidebar-link" id="link-spec">⭐ Specialties</a></li>
-            <li class="sidebar-menu-item"><a href="#regional-section" class="sidebar-link" id="link-region">🌍 Regional Dishes</a></li>
-            <li class="sidebar-menu-item"><a href="#desserts-section" class="sidebar-link" id="link-dessert">🍰 Sweet Desserts</a></li>
-            <li class="sidebar-menu-item"><a href="#payment-methods-box" class="sidebar-link" id="link-pay">💳 Payment Box</a></li>
+    <!-- ==========================================================================
+         SIDEBAR NAVIGATION SYSTEM
+         ========================================================================== -->
+    <nav class="sidebar">
+        <div class="sidebar-brand">Khan's Cravings</div>
+        <ul class="sidebar-menu">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#menu">Our Menu</a></li>
+            <li><a href="#private-dining">Private Dining</a></li>
         </ul>
-    </div>
+    </nav>
 
-    <!-- Navigation Bar Core Header Structure -->
-    <header>
-        <div class="header-main">
-            <div class="header-left-group">
-                <button class="sidebar-toggle-btn" id="openDrawerMenu">☰ Menu</button>
-                <div>
-                    <h1>KHANS CRAVINGS</h1>
-                    <div class="tagline">Where Culinary Tradition Meets Innovation</div>
+    <!-- ==========================================================================
+         MAIN SITE CONTENT WRAPPER (Optimized for Laptop viewports)
+         ========================================================================== -->
+    <main class="main-content">
+        
+        <!-- ==========================================================================
+             PREMIUM ABOUT US & LUXURY SERVICES SECTION
+             ========================================================================== -->
+        <section id="about" class="about-section">
+            <div class="about-overlay">
+                <div class="about-container">
+                    
+                    <!-- Core Premium Description -->
+                    <header class="about-header">
+                        <h2>Our Premium Story</h2>
+                        <p class="premium-desc">
+                            Welcome to <strong>Khan’s Cravings & Dining</strong>, where culinary artistry meets unrivaled luxury. Born from a passion for bold flavors and exquisite presentation, we curate elite gastronomic journeys for the discerning palate.
+                        </p>
+                    </header>
+
+                    <!-- The Three Luxury Services -->
+                    <div class="premium-block">
+                        <h3>Our Exclusive Services</h3>
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <div class="service-icon">🔥</div>
+                                <h4>Live BBQ Experience</h4>
+                                <p>Interact with elite pitmasters preparing premium, customized cuts right at your table side over pristine wood fire embers.</p>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-icon">🎤</div>
+                                <h4>Karaoke Panel</h4>
+                                <p>Enjoy our cutting-edge sound spaces featuring professional-grade multi-language acoustics for private dining celebrations.</p>
+                            </div>
+                            <div class="service-card">
+                                <div class="service-icon">🍸</div>
+                                <h4>Private Bar</h4>
+                                <p>Access our fully stocked mixology lounges staffed with world-class bartenders crafting rare, bespoke beverage menus.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIP Golden Membership Requirements -->
+                    <div class="premium-block vip-tier">
+                        <h3>How to Unlock Your VIP Card</h3>
+                        <p class="vip-intro">Gain exclusive access to our inner circle. To claim your personalized <strong>Khan's Gold VIP Card</strong>, guests must fulfill one of the following criteria:</p>
+                        <ul class="vip-requirements">
+                            <li><strong>Accumulated Visits:</strong> Complete 5 premium dining reservations within a single calendar quarter.</li>
+                            <li><strong>Elite Spend Minimum:</strong> Spend a minimum threshold of $500 across your corporate or private events.</li>
+                            <li><strong>Direct Premium Invite:</strong> Receive a curated referral token from an active Platinum Tier club member.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Elite Member Special Offers -->
+                    <div class="premium-block">
+                        <h3>Current Special Offers</h3>
+                        <div class="offers-grid">
+                            <div class="offer-pill">
+                                <span class="offer-tag">Complimentary</span>
+                                <p>Free custom dessert plate crafted by our executive pastry chef on your birthday week.</p>
+                            </div>
+                            <div class="offer-pill">
+                                <span class="offer-tag">Private Dining</span>
+                                <p>Enjoy 15% off venue booking fees when reserving our Private Bar layout from Monday to Wednesday.</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+        </section>
+
+        <!-- ==========================================================================
+             MASTER INTEGRATED RESTAURANT MENU SECTION
+             ========================================================================== -->
+        <section id="menu" class="menu-section">
+            <h2 class="section-title">Our Culinary Manifest</h2>
+            
+            <!-- Category 1: Signature Dishes (Includes Honey Mixed Flavor Ribs) -->
+            <div class="menu-category">
+                <h3>Signature Dishes</h3>
+                <div class="menu-grid">
+                    <div class="menu-item signature-highlight">
+                        <h4>Beef Ribs Honey Mixed Flavor</h4>
+                        <p class="item-desc">Slow-roasted, fall-off-the-bone prime beef ribs glazed in a rich, artisanal wildflower honey blend and micro-herbs.</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Saffron Infused Lamb Shank</h4>
+                        <p class="item-desc">Slow-braised premium lamb shank resting on a bed of rich saffron risotto.</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Truffle Butter Ribeye</h4>
+                        <p class="item-desc">A5 grade ribeye steak seared to perfection with house-made black truffle butter.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2: Snacks Selection -->
+            <div class="menu-category">
+                <h3>Snacks Selection</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Crispy Calamari Rings</h4>
+                        <p class="item-desc">Lightly dusted squid rings tossed in sea salt, cracked pepper, and served with a citrus aioli dip.</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Spiced Truffle Fries</h4>
+                        <p class="item-desc">Hand-cut golden potatoes tossed in white truffle oil, grated parmesan, and smoked paprika.</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Glazed Chicken Wings</h4>
+                        <p class="item-desc">Crispy skin chicken wings tossed in a spicy, house-made tangy glaze with a cooling ranch dip.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 3: Regional Dishes -->
+            <div class="menu-category">
+                <h3>Regional Dishes</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Heritage Spiced Korma</h4>
+                        <p class="item-desc">A classic, slow-cooked rich gravy cooked over hours with ground local aromatics.</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Smoked Mustard Fish</h4>
+                        <p class="item-desc">Fresh catch of the day marinated in sharp indigenous mustard paste and wood-smoked.</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Clay-Pot Dum Biryani</h4>
+                        <p class="item-desc">Fragrant long-grain basmati rice layered with spiced meat, sealed and cooked in clay ovens.</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Flame-Grilled Kebabs</h4>
+                        <p class="item-desc">Minced meat skewers infused with traditional local herbs, grilled over open charcoal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 4: Exquisite Desserts -->
+            <div class="menu-category">
+                <h3>Exquisite Desserts</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Golden Leaf Panna Cotta</h4>
+                        <p class="item-desc">Silky vanilla bean panna cotta crowned with edible 24k gold leaf syrup.</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Deconstructed Baklava</h4>
+                        <p class="item-desc">Crispy pistachio pastry flakes served alongside rich, house-made honey gelato.</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Dark Chocolate Fondant</h4>
+                        <p class="item-desc">Molten dark cocoa core with a crisp outer crust, served with fresh seasonal berries.</p>
+                    </div>
+                </div>
+</section> <!-- Add this tag to close the menu  
+     
+<!-- ==========================================================================
+     THE INTERACTIVE PRIVATE DINING BOOKING MODULE
+     ========================================================================== -->
+<section id="private-dining" class="private-dining-module">
+    <div class="module-container">
+        <div class="module-header">
+            <span class="module-badge">Elite Reservations</span>
+            <h2>Bespoke Private Dining</h2>
+            <p>Customize your intimate culinary escape or corporate gala event below.</p>
         </div>
-    </header>
 
-    <!-- Dedicated Full-Width Subheader Cart Tracker Bar -->
-    <div class="cart-bar-row">
-        <button class="header-cart-btn">🛒 CART <span class="cart-count">0</span></button>
+        <form class="booking-form" onsubmit="event.preventDefault(); alert('Reservation Request Transmitted.');">
+            <!-- Grid Layout for Inputs -->
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="guest-name">Full Name</label>
+                    <input type="text" id="guest-name" placeholder="Lord / Lady Khan" required>
+                </div>
+                <div class="form-group">
+                    <label for="guest-email">VIP Contact Email</label>
+                    <input type="email" id="guest-email" placeholder="vip@khanscravings.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-date">Desired Date</label>
+                    <input type="date" id="event-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="guest-count">Expected Attendants</label>
+                    <select id="guest-count" required>
+                        <option value="" disabled selected>Select party scale...</option>
+                        <option value="intimate">Intimate Suite (2 - 6 guests)</option>
+                        <option value="lounge">Mixology Lounge (7 - 15 guests)</option>
+                        <option value="grand">Grand Sovereign Hall (16 - 50 guests)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Venue Setting Selection Tiers -->
+            <div class="form-experience-select">
+                <label>Select Experience Venue</label>
+                <div class="experience-options">
+                    <label class="exp-card">
+                        <input type="radio" name="venue-choice" value="bbq" checked>
+                        <div class="exp-card-inner">
+                            <span class="exp-icon">🔥</span>
+                            <h5>Live BBQ Terrace</h5>
+                        </div>
+                    </label>
+                    <label class="exp-card">
+                        <input type="radio" name="venue-choice" value="karaoke">
+                        <div class="exp-card-inner">
+                            <span class="exp-icon">🎤</span>
+                            <h5>Acoustic Karaoke Suite</h5>
+                        </div>
+                    </label>
+                    <label class="exp-card">
+                        <input type="radio" name="venue-choice" value="bar">
+                        <div class="exp-card-inner">
+                            <span class="exp-icon">🍸</span>
+                            <h5>Sovereign Private Bar</h5>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Additional Luxury Amenities -->
+            <div class="form-group checklist-group">
+                <label>Requested Luxury Add-ons</label>
+                <div class="checklist-grid">
+                    <label class="checkbox-container">
+                        <input type="checkbox" value="sommelier">
+                        Dedicated Sommelier Service
+                    </label>
+                    <label class="checkbox-container">
+                        <input type="checkbox" value="menu-custom">
+                        Bespoke 7-Course Printed Menu
+                    </label>
+                    <label class="checkbox-container">
+                        <input type="checkbox" value="valet">
+                        Complimentary VIP Valet Parking
+                    </label>
+                </div>
+            </div>
+
+            <!-- Submit Gateway Button -->
+            <button type="submit" class="submit-btn">Request Booking Allocation</button>
+        </form>
     </div>
-
-    <div class="container">
-        <p class="intro-text">Experience an elite dining journey featuring our critically acclaimed house specialties, crafted masterfully by our culinary artisans to satisfy your deepest cravings.</p>
-
-        <!-- 1. SIGNATURE DISHES CATEGORY (2 Items) -->
-        <h2 class="menu-section-title" id="specialties-section">Signature Masterpieces</h2>
-        <div class="grid-container">
-            <div class="food-card">
-                <div>
-                    <h3 class="food-name">The Emperor's Platter</h3>
-                    <p class="food-description">Our supreme culinary dish. Slow-cooked premium cut meat, heavily infused with exotic spices and aromatic herbs.</p>
-                    <span class="food-price">$38.00</span>
-                </div>
-                <div class="payment-box">
-                    <button class="checkout-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="food-card">
-                <div>
-                    <h3 class="food-name">Pan-Seared Herb Chilean Seabass</h3>
-                    <p class="food-description">Wild-caught Chilean seabass pan-seared until crisp, resting on a bed of creamy saffron risotto and drizzled with a citrus-herb butter infusion.</p>
-                    <span class="food-price">$38.50</span>
-                </div>
-                <div class="payment-box">
-                    <button class="checkout-btn">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2. REGIONAL DISHES CATEGORY (4 Items) -->
-        <h2 class="menu-section-title" id="regional-section">Regional Traditions</h2>
-        <div class="grid-container">
-            <div class="food-card">
-                <div>
+</section><!-- Closes Private Dining Module -->
+</main> <!-- Closes Main Content Area -->
+</body>
+</html>
+            
